@@ -1,0 +1,34 @@
+<div class="dropdown">
+  <button class="btn btn-outline-success dropdown-toggle central-part" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    類別
+  </button>
+  <ul class="dropdown-menu central-part">
+    {{#each categories}}
+    <li><a class="dropdown-item" href="#">{{this}}</a></li>
+    {{/each}}
+  </ul>
+</div>
+
+<div class="d-flex justify-content-around my-3 central-part">
+  <p class="total-amount">總金額：</p>
+  <h1 class="total-amount">{{totalAmount}}</h1>
+</div>
+
+<ul class="list-group list-group-flush">
+  {{#each records}}
+  <li class="list-group-item d-flex mb-1">
+    <div class="record-content d-flex">
+      {{#icon this.category}}{{/icon}}
+      <div class="record-text">
+        <p class="record-name">{{this.name}}</p>
+        <p class="record-date">{{this.date}}</p>
+      </div>
+      <div class="record-amount">{{this.amount}}</div>
+    </div>
+    <a href="#" class="btn btn-outline-dark ms-auto">修改</a>
+    <a href="#" class="btn btn-outline-dark ms-3">刪除</a>
+  </li>
+  {{/each}}
+</ul>
+
+<a href="/records/new" class="btn btn-warning mt-3 create-button">新增支出</a>
