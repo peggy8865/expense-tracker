@@ -1,0 +1,23 @@
+<h3 class="mt-4 mb-3">註冊</h3>
+<form action="/users/register" method="POST" class="login-form">
+  <div class="mb-3">
+    <label for="name" class="form-label">姓名*</label>
+    <input type="name" class="form-control" id="name" name="name">
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">信箱*</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="ex: jackson@example.com">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">密碼*</label>
+    <input type="password" class="form-control" id="password" name="password">
+  </div>
+  <div class="mb-3">
+    <label for="confirmPassword" class="form-label">確認密碼*</label>
+    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+  </div>
+  <div class="d-grid gap-2">
+    <button type="submit" class="btn btn-success mt-2 mb-3">註冊</button>
+  </div>
+  <p>已經有帳號了嗎? <a href="/users/login" class="link-danger">點我登入</a></p>
+</form>
