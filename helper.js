@@ -13,13 +13,24 @@ Handlebars.registerHelper('icon', (categoryName) => {
 
 Handlebars.registerHelper('options', (defaultCategory) => {
   const categories = ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他']
-  let optionHTML = ''
-  for (let i = 0; i < categories.length; i++) {
-    if (categories[i] === defaultCategory) {
-      optionHTML += `<option value="${categories[i]}" selected>${categories[i]}</option>`
-    } else {
-      optionHTML += `<option value="${categories[i]}">${categories[i]}</option>`
-    }
+  let optionsHTML = ''
+
+  if (!defaultCategory) {
+    categories.forEach(category => {
+      optionsHTML += `
+      <option value="${category}">${category}</option>`
+    })
+    return optionsHTML
   }
-  return optionHTML
+
+  categories.forEach((category => {
+    if (category === defaultCategory) {
+      optionsHTML += `
+      <option value="${category}" selected>${category}</option>`
+    } else {
+      optionsHTML += `
+      <option value="${category}">${category}</option>`
+    }
+  }))
+  return optionsHTML
 })

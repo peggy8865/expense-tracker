@@ -1,10 +1,15 @@
 <div class="dropdown">
   <button class="btn btn-outline-success dropdown-toggle central-part" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    {{#if category}}
+    {{category}}
+    {{else}}
     類別
+    {{/if}}
   </button>
   <ul class="dropdown-menu central-part">
+    <li><a class="dropdown-item" href="/">全部</a></li>
     {{#each categories}}
-    <li><a class="dropdown-item" href="#">{{this}}</a></li>
+    <li><a class="dropdown-item" href="/{{this}}">{{this}}</a></li>
     {{/each}}
   </ul>
 </div>
