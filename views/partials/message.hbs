@@ -1,0 +1,39 @@
+{{!-- logout success --}}
+{{#if logout_msg}}
+<div class="alert alert-success alert-dismissible fade show message" role="alert">
+  {{logout_msg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+
+{{!-- login required --}}
+{{#if login_warning_msg}}
+<div class="alert alert-warning alert-dismissible fade show message" role="alert">
+  {{login_warning_msg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+
+{{!-- login failed --}}
+{{#if login_err_msg}}
+<div class="alert alert-danger alert-dismissible fade show message" role="alert">
+  {{login_err_msg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+
+{{!-- registration failed --}}
+{{#each errors}}
+<div class="alert alert-danger alert-dismissible fade show message" role="alert">
+  {{this.message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/each}}
+
+{{!-- register success --}}
+{{#if register_msg}}
+<div class="alert alert-success alert-dismissible fade show message" role="alert">
+  {{register_msg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}

@@ -112,3 +112,11 @@ form .col-4, .col-8 .form-control, .col-8 .form-select {
 .login-form > p {
   font-size: 16px;
 }
+
+.message {
+  width: 360px;
+}
+
+.message > .btn-close {
+  font-size: 12px;
+}
