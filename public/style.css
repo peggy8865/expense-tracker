@@ -69,7 +69,7 @@ ul {
   text-align: end;
 }
 
-li .btn {
+li .btn, li form {
   align-self: center;
   --bs-btn-border-radius: 0;
 }
