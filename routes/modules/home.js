@@ -4,12 +4,12 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 
 router.get('/', (req, res) => {
-  // 尚未標記 user
+  const userId = req.user._id
   let totalAmount = 0
   let promiseArray = []
   const categories = ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他']
 
-  Record.find().sort({ date: -1 })
+  Record.find({ userId }).sort({ date: -1 })
     .lean()
     .then(records => {
       records.forEach(record => {
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:category', (req, res) => {
-  // 尚未標記 user
+  const userId = req.user._id
   let totalAmount = 0
   let promiseArray = []
   const categories = ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他']
@@ -38,7 +38,7 @@ router.get('/:category', (req, res) => {
 
   Category.findOne({ name: category }).then(item => {
     const categoryId = item._id
-    Record.find({ categoryId }).sort({ date: -1 })
+    Record.find({ userId, categoryId }).sort({ date: -1 })
       .lean()
       .then(records => {
         records.forEach(record => {

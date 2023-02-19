@@ -10,12 +10,12 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  // 尚未標記 user
+  const userId = req.user._id
   const { name, date, amount, category } = req.body
   Category.findOne({ name: category })
     .then(item => {
       const categoryId = item._id
-      Record.create({ name, date, amount, categoryId })
+      Record.create({ name, date, amount, userId, categoryId })
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
     })
@@ -23,15 +23,15 @@ router.post('/', (req, res) => {
 })
 
 router.get('/:id/edit', (req, res) => {
-  // 尚未標記 user
-  const id = req.params.id
-  Record.findById(id).then(record => {
+  const userId = req.user._id
+  const _id = req.params.id
+  Record.findOne({ userId, _id }).then(record => {
     const name = record.name
     const date = tool.removeTime(record.date)
     const amount = record.amount
     Category.findById(record.categoryId).then(item => {
       const category = item.name
-      res.render('edit', { name, date, amount, category, id })
+      res.render('edit', { name, date, amount, category, _id })
     })
       .catch(err => console.log(err))
   })
@@ -39,10 +39,10 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  // 尚未標記 user
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   const { name, date, amount, category } = req.body
-  Record.findById(id).then(record => {
+  Record.findOne({ userId, _id }).then(record => {
     record.name = name
     record.date = date
     record.amount = amount
@@ -55,9 +55,9 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  // 尚未標記 user
-  const id = req.params.id
-  Record.findById(id).then(record => {
+  const userId = req.user._id
+  const _id = req.params.id
+  Record.findOne({ userId, _id }).then(record => {
     return record.remove()
   }).then(() => res.redirect('/'))
 })
